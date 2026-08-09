@@ -7,7 +7,7 @@ AIがIELTS Reading/Listeningの練習問題をその場で生成し、ユーザ�
 ## リポジトリ一覧
 
 | リポジトリ | 内容 |
-|---|---|
+| --- | --- |
 | [ielts-creater-frontend](https://github.com/h-fujiwara-dev/ielts-creater-frontend) | Next.js（App Router）+ TypeScript。画面仕様は `docs/画面一覧.md` `docs/画面設計書/` に記載 |
 | [ielts-creater-backend](https://github.com/h-fujiwara-dev/ielts-creater-backend) | Spring Boot 3 + Java 21。API・DB・機能仕様は `docs/` に記載。ローカルPostgresは `docker-compose.yml` で起動 |
 | [ielts-creater-infra](https://github.com/h-fujiwara-dev/ielts-creater-infra) | AWSインフラ（VPC, ECS, RDS, S3, Cognito等）のTerraformコード |
@@ -52,7 +52,7 @@ Phase 1では認証なし・固定devユーザーで動作するため、Cognito
 
 ## ローカルのディレクトリ構成
 
-```
+```text
 ielts-creater/            # 本リポジトリ（紹介用、コードなし）
 ├── frontend/              # ielts-creater-frontend のclone
 ├── backend/                # ielts-creater-backend のclone
