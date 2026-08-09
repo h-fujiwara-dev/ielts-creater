@@ -24,3 +24,4 @@
 | [#00009](./00009_Lintワークフロー自動実行の不具合修正.md) | Lintワークフロー自動実行の不具合修正（action_required解消） | root / frontend / backend / infra | 進行中 |
 | [#00010](./00010_TOP画面のfrontend実装.md) | TOP画面（S-01）のfrontend実装 | root / frontend | 完了 |
 | [#00011](./00011_ダッシュボード起点への画面遷移フロー変更.md) | ダッシュボード起点への画面遷移フロー変更 | root / frontend | 完了 |
+| [#00014](./00014_backend_API未決事項の解消.md) | backend API未決事項の解消 | root / backend / frontend | 完了 |
