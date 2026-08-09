@@ -16,4 +16,4 @@
 | --- | --- | --- | --- |
 | [#00001](./00001_リポジトリ初期構築.md) | リポジトリ初期構築 | root / frontend / backend / infra | 完了 |
 | [#00002](./00002_GitHub運用ルールとコミット規約の自動化.md) | GitHub運用ルールとコミット規約の自動化 | root | 完了 |
-| [#00003](./00003_GitHub運用ルールとコミット規約の自動化（frontend-backend-infra展開）.md) | GitHub運用ルールとコミット規約の自動化（frontend/backend/infra展開） | frontend / backend / infra | 進行中 |
+| [#00003](./00003_GitHub運用ルールとコミット規約の自動化（frontend-backend-infra展開）.md) | GitHub運用ルールとコミット規約の自動化（frontend/backend/infra展開） | frontend / backend / infra | 完了 |

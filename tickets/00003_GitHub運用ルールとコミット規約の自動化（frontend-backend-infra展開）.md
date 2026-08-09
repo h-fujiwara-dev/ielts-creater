@@ -1,7 +1,7 @@
 # #00003 GitHub運用ルールとコミット規約の自動化（frontend/backend/infra展開）
 
 - 対象リポジトリ: frontend / backend / infra
-- ステータス: 進行中
+- ステータス: 完了
 - type: chore
 - 関連ドキュメント: [CLAUDE.md](../CLAUDE.md#コミットメッセージ規則) / [#00002](./00002_GitHub運用ルールとコミット規約の自動化.md)
 
@@ -18,16 +18,17 @@ root（本リポジトリ）で整備済みの開発ガバナンス（[#00002](.
 
 ## 受け入れ条件
 
-- [ ] frontend: mainへの直接pushが拒否される（PR必須、管理者含む）
-- [ ] frontend: featureブランチpush時にPRが自動作成され、markdownlintの必須CIチェックが実行される
-- [ ] frontend: 規約外のコミットメッセージ・markdownlint違反がローカルフックで拒否される
-- [ ] backend: mainへの直接pushが拒否される（PR必須、管理者含む）
-- [ ] backend: featureブランチpush時にPRが自動作成され、markdownlintの必須CIチェックが実行される
-- [ ] backend: 規約外のコミットメッセージ・markdownlint違反がローカルフックで拒否される
-- [ ] infra: mainへの直接pushが拒否される（PR必須、管理者含む）
-- [ ] infra: featureブランチpush時にPRが自動作成され、markdownlintの必須CIチェックが実行される
-- [ ] infra: 規約外のコミットメッセージ・markdownlint違反がローカルフックで拒否される
+- [x] frontend: mainへの直接pushが拒否される（PR必須、管理者含む）
+- [x] frontend: featureブランチpush時にPRが自動作成され、markdownlintの必須CIチェックが実行される
+- [x] frontend: 規約外のコミットメッセージ・markdownlint違反がローカルフックで拒否される
+- [x] backend: mainへの直接pushが拒否される（PR必須、管理者含む）
+- [x] backend: featureブランチpush時にPRが自動作成され、markdownlintの必須CIチェックが実行される
+- [x] backend: 規約外のコミットメッセージ・markdownlint違反がローカルフックで拒否される
+- [x] infra: mainへの直接pushが拒否される（PR必須、管理者含む）
+- [x] infra: featureブランチpush時にPRが自動作成され、markdownlintの必須CIチェックが実行される
+- [x] infra: 規約外のコミットメッセージ・markdownlint違反がローカルフックで拒否される
 
 ## 作業ログ
 
 - 2026-08-09 着手
+- 2026-08-09 frontend/backend/infraの3リポジトリに #00002 と同一構成（Husky/lint-staged/commitlint/markdownlint、auto-pr.yml・lint.yml、ブランチ保護）を展開。各リポジトリでmain直push拒否・自動PR作成・commit-msg/pre-commitフック・PR必須CIチェックをエンドツーエンドで確認し完了。動作確認用PR（frontend #1 / backend #1 / infra #1）は本人の手動レビュー・マージ待ち
