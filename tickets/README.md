@@ -20,3 +20,4 @@
 | [#00005](./00005_TOP画面のFigmaデザイン作成.md) | TOP画面（S-01）のFigmaデザイン作成 | root / frontend | 進行中 |
 | [#00006](./00006_docs表記統一とブラッシュアップ.md) | docs表記統一とブラッシュアップ | root / frontend / backend | 完了 |
 | [#00007](./00007_フロントエンド画面設計書の作成.md) | フロントエンド画面設計書（機能仕様）の作成・更新 | root / frontend | 進行中 |
+| [#00009](./00009_Lintワークフロー自動実行の不具合修正.md) | Lintワークフロー自動実行の不具合修正（action_required解消） | root / frontend / backend / infra | 進行中 |
