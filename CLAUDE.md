@@ -21,6 +21,15 @@
 - テンプレートは `.gitmessage`（`git config commit.template .gitmessage` で有効化済み。cloneし直した場合は再設定が必要）
 - チケット番号は本リポジトリの[tickets/](./tickets/)で採番・管理する
 
+## ブランチ戦略
+
+- `main`: リリース専用ブランチ。直接pushは禁止（管理者含む、PR必須）。`develop`からのリリースPRをマージするタイミングのみ更新する
+- `develop`: 開発統合ブランチ。直接pushは禁止（管理者含む、PR必須）。作業ブランチからのPRはすべてここにマージする
+- 作業ブランチ: `develop`から作成し、コミットメッセージのtype（Conventional Commits準拠）を接頭辞とする（例: `feat/xxx`, `fix/xxx`, `docs/xxx`, `chore/xxx`）
+- 作業ブランチをpushすると、GitHub Actionsが自動で`develop`宛にPRを作成する（[.github/workflows/auto-pr.yml](./.github/workflows/auto-pr.yml)）
+- `develop`→`main`のリリースマージも、作業ブランチ→`develop`のPRと同じルール（レビュー0件可・markdownlint必須チェック）に従う
+- ielts-creater / -frontend / -backend / -infra の4リポジトリ共通のルール
+
 ## チケット運用（Claudeが作業する際のルール）
 
 - チケットは[tickets/](./tickets/)配下に1チケット=1ファイルで管理する。運用ルール・一覧は[tickets/README.md](./tickets/README.md)を参照
