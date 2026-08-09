@@ -1,0 +1,12 @@
+# Sub-repositories (each is an independent git repository, cloned locally but not tracked here)
+frontend/
+backend/
+infra/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
