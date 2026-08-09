@@ -1,7 +1,7 @@
 # #00010 TOP画面（S-01）のfrontend実装
 
 - 対象リポジトリ: root / frontend
-- ステータス: 進行中
+- ステータス: 完了
 - type: feat
 - 関連ドキュメント: [#00005 TOP画面のFigmaデザイン作成](./00005_TOP画面のFigmaデザイン作成.md) / [画面遷移図](../docs/画面遷移図.md) / [frontendリポジトリ docs/画面設計書/S-01_Top画面.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/画面設計書/S-01_Top画面.md)
 
@@ -19,12 +19,14 @@
 
 ## 受け入れ条件
 
-- [ ] `ielts-creater-frontend`リポジトリにNext.jsアプリが新規構築されている（TypeScript / Tailwind CSS / App Router / shadcn/ui）
-- [ ] S-01 Top画面が[S-01_Top画面.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/画面設計書/S-01_Top画面.md)の仕様通り（9セクション構成・配色・フォント）に実装されている
-- [ ] `npm run build`が通る
-- [ ] 既存のlint（markdownlint等）が引き続き通る
-- [ ] ローカルでdev serverを起動し、レイアウト崩れ・コンソールエラーがないことを確認している
+- [x] `ielts-creater-frontend`リポジトリにNext.jsアプリが新規構築されている（TypeScript / Tailwind CSS / App Router / shadcn/ui）
+- [x] S-01 Top画面が[S-01_Top画面.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/画面設計書/S-01_Top画面.md)の仕様通り（9セクション構成・配色・フォント）に実装されている
+- [x] `npm run build`が通る
+- [x] 既存のlint（markdownlint等）が引き続き通る
+- [x] ローカルでdev serverを起動し、レイアウト崩れ・コンソールエラーがないことを確認している
 
 ## 作業ログ
 
 - 2026-08-09 着手
+- 2026-08-09 `ielts-creater-frontend`にNext.js(App Router) + TypeScript + Tailwind CSS + shadcn/uiのアプリを新規構築（`create-next-app`は一時scaffoldで実行し、既存のCLAUDE.md/README.md/docs等を壊さないよう設定ファイルとpackage.jsonのみを実リポジトリにマージ）。scratchpadの検証用プロトタイプ（`landing-clone`）からコンポーネント・画像・スタイルを移植し、S-01 Top画面を実装
+- 2026-08-09 `npm run build` / `npm run lint` / markdownlintが通ることを確認。Next.js 16の`agentRules`機能がCLAUDE.mdに追記する見出しがmarkdownlintのMD025（単一H1）と衝突したため、`next.config.ts`で`agentRules: false`に設定して無効化。ローカルdev serverでレイアウト崩れ・コンソールエラーがないことを確認し、`ielts-creater-frontend` PR [#8](https://github.com/h-fujiwara-dev/ielts-creater-frontend/pull/8)を作成（CIパス済み）。チケットを完了とする
