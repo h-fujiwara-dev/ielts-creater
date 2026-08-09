@@ -1,7 +1,7 @@
 # #00002 GitHub運用ルールとコミット規約の自動化
 
 - 対象リポジトリ: root
-- ステータス: 進行中
+- ステータス: 完了
 - type: chore
 - 関連ドキュメント: [CLAUDE.md](../CLAUDE.md#コミットメッセージ規則)
 
@@ -11,14 +11,15 @@ mainブランチの保護（PR必須・管理者含む・レビュー0件でも�
 
 ## 受け入れ条件
 
-- [ ] mainへの直接pushが拒否される（PR必須、管理者含む）
-- [ ] featureブランチpush時にPRが自動作成される
-- [ ] 規約外のコミットメッセージがcommit-msgフックで拒否される
-- [ ] markdownlint違反がpre-commitで拒否される
-- [ ] PR上でmarkdownlintのCIチェックが必須ステータスとして実行される
-- [ ] マージ後にheadブランチが自動削除され、squashマージのみ選択可能
+- [x] mainへの直接pushが拒否される（PR必須、管理者含む）
+- [x] featureブランチpush時にPRが自動作成される
+- [x] 規約外のコミットメッセージがcommit-msgフックで拒否される
+- [x] markdownlint違反がpre-commitで拒否される
+- [x] PR上でmarkdownlintのCIチェックが必須ステータスとして実行される
+- [x] マージ後にheadブランチが自動削除され、squashマージのみ選択可能
 
 ## 作業ログ
 
 - 2026-08-09 着手
 - 2026-08-09 Phase A（Husky/lint-staged/commitlint/markdownlint）・Phase B（GitHub Actions: 自動PR作成・PR Lint）・Phase C前半（Actions権限・Squash限定/ブランチ自動削除・Secret Scanning確認）完了。ブランチ保護有効化前の実地動作確認を実施中
+- 2026-08-09 ブランチ保護（enforce_admins・PR必須・承認0件・markdownlint必須チェック）を有効化。オーナーの直push拒否／featureブランチの自動PR作成／commit-msg・pre-commitフックによる拒否／PRの必須CIチェック／Squashマージ限定・自動ブランチ削除を全てエンドツーエンドで確認し、完了
