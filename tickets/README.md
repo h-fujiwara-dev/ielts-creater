@@ -17,3 +17,5 @@
 | [#00001](./00001_リポジトリ初期構築.md) | リポジトリ初期構築 | root / frontend / backend / infra | 完了 |
 | [#00002](./00002_GitHub運用ルールとコミット規約の自動化.md) | GitHub運用ルールとコミット規約の自動化 | root | 完了 |
 | [#00004](./00004_Top画面追加とログイン画面遷移の反映.md) | Top画面追加とログイン画面遷移の反映とブランチ戦略の導入 | root / frontend / backend / infra | 完了 |
+| [#00005](./00005_TOP画面のFigmaデザイン作成.md) | TOP画面（S-01）のFigmaデザイン作成 | root / frontend | 進行中 |
+| [#00006](./00006_docs表記統一とブラッシュアップ.md) | docs表記統一とブラッシュアップ | root / frontend / backend | 完了 |
