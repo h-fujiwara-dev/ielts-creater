@@ -24,3 +24,5 @@
 | [#00009](./00009_Lintワークフロー自動実行の不具合修正.md) | Lintワークフロー自動実行の不具合修正（action_required解消） | root / frontend / backend / infra | 進行中 |
 | [#00010](./00010_TOP画面のfrontend実装.md) | TOP画面（S-01）のfrontend実装 | root / frontend | 完了 |
 | [#00011](./00011_ダッシュボード起点への画面遷移フロー変更.md) | ダッシュボード起点への画面遷移フロー変更 | root / frontend | 完了 |
+| [#00012](./00012_TOP画面のreactbits演出強化.md) | TOP画面（S-01）のreactbits演出強化 | root / frontend | 完了 |
+| [#00013](./00013_画面デザイン叩き台の作成（ベーススタイル・主要フロー6画面）.md) | 画面デザイン叩き台（ベーススタイル・主要フロー6画面）の作成 | root / frontend | 完了 |
