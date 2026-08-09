@@ -21,3 +21,4 @@ mainブランチの保護（PR必須・管理者含む・レビュー0件でも�
 ## 作業ログ
 
 - 2026-08-09 着手
+- 2026-08-09 Phase A（Husky/lint-staged/commitlint/markdownlint）・Phase B（GitHub Actions: 自動PR作成・PR Lint）・Phase C前半（Actions権限・Squash限定/ブランチ自動削除・Secret Scanning確認）完了。ブランチ保護有効化前の実地動作確認を実施中
