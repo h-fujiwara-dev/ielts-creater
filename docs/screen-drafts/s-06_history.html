@@ -57,7 +57,7 @@
   <div class="mb-8">
     <p class="text-sm font-bold" style="color: var(--color-orange)">S-06</p>
     <h1 class="mt-1 text-2xl font-extrabold" style="color: var(--color-navy)">履歴一覧</h1>
-    <p class="mt-1 text-sm" style="color: var(--color-muted-foreground)">過去の受験履歴を一覧表示する画面。選択すると結果画面（S-05）へ遷移する</p>
+    <p class="mt-1 text-sm" style="color: var(--color-muted-foreground)">過去の受験履歴を一覧表示する画面。各行から採点結果の確認（S-05）、または同じ問題セットでの再受験（S-04）を選べる</p>
   </div>
 
   <!-- State 1: List with results -->
@@ -73,7 +73,7 @@
     </div>
 
     <div class="flex flex-col gap-3">
-      <a href="s-05_result.html" class="list-row card--interactive" style="text-decoration: none">
+      <div class="list-row">
         <div>
           <div class="flex items-center gap-2">
             <span class="badge badge-navy">Reading</span>
@@ -81,13 +81,16 @@
           </div>
           <p class="mt-1 text-xs" style="color: var(--color-muted-foreground)">Environment ・ Band 6–7</p>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-4">
           <span class="history-row__score">11 / 15</span>
-          <span style="color: var(--color-muted-foreground)">›</span>
+          <div class="flex gap-2">
+            <a href="s-04_answer.html" class="btn btn-outline btn-sm">もう一度解く</a>
+            <a href="s-05_result.html" class="btn btn-ghost btn-sm">結果を見る ›</a>
+          </div>
         </div>
-      </a>
+      </div>
 
-      <a href="s-05_result.html" class="list-row card--interactive" style="text-decoration: none">
+      <div class="list-row">
         <div>
           <div class="flex items-center gap-2">
             <span class="badge badge-orange">Listening</span>
@@ -95,13 +98,16 @@
           </div>
           <p class="mt-1 text-xs" style="color: var(--color-muted-foreground)">Technology ・ Band 6–7</p>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-4">
           <span class="history-row__score">8 / 12</span>
-          <span style="color: var(--color-muted-foreground)">›</span>
+          <div class="flex gap-2">
+            <a href="s-04_answer.html" class="btn btn-outline btn-sm">もう一度解く</a>
+            <a href="s-05_result.html" class="btn btn-ghost btn-sm">結果を見る ›</a>
+          </div>
         </div>
-      </a>
+      </div>
 
-      <a href="s-05_result.html" class="list-row card--interactive" style="text-decoration: none">
+      <div class="list-row">
         <div>
           <div class="flex items-center gap-2">
             <span class="badge badge-navy">Reading</span>
@@ -109,13 +115,16 @@
           </div>
           <p class="mt-1 text-xs" style="color: var(--color-muted-foreground)">Education ・ Band 5–6</p>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-4">
           <span class="history-row__score">13 / 14</span>
-          <span style="color: var(--color-muted-foreground)">›</span>
+          <div class="flex gap-2">
+            <a href="s-04_answer.html" class="btn btn-outline btn-sm">もう一度解く</a>
+            <a href="s-05_result.html" class="btn btn-ghost btn-sm">結果を見る ›</a>
+          </div>
         </div>
-      </a>
+      </div>
 
-      <a href="s-05_result.html" class="list-row card--interactive" style="text-decoration: none">
+      <div class="list-row">
         <div>
           <div class="flex items-center gap-2">
             <span class="badge badge-orange">Listening</span>
@@ -123,11 +132,14 @@
           </div>
           <p class="mt-1 text-xs" style="color: var(--color-muted-foreground)">Health ・ Band 6–7</p>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-4">
           <span class="history-row__score">6 / 12</span>
-          <span style="color: var(--color-muted-foreground)">›</span>
+          <div class="flex gap-2">
+            <a href="s-04_answer.html" class="btn btn-outline btn-sm">もう一度解く</a>
+            <a href="s-05_result.html" class="btn btn-ghost btn-sm">結果を見る ›</a>
+          </div>
         </div>
-      </a>
+      </div>
     </div>
 
     <div class="mt-6 pagination">
