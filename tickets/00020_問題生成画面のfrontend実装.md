@@ -1,7 +1,7 @@
 # #00020 問題生成画面（S-03）のfrontend実装
 
 - 対象リポジトリ: root / frontend
-- ステータス: 未着手
+- ステータス: 完了
 - type: feat
 - 関連ドキュメント: [画面遷移図](../docs/画面遷移図.md) / [docs/screen-drafts/s-03_question-generation.html](../docs/screen-drafts/s-03_question-generation.html) / [frontendリポジトリ docs/画面設計書/S-03_問題生成画面.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/画面設計書/S-03_問題生成画面.md) / [backendリポジトリ docs/API設計書/POST_question-sets.md](https://github.com/h-fujiwara-dev/ielts-creater-backend/blob/main/docs/API設計書/POST_question-sets.md) / [#00019 ダッシュボード画面のfrontend実装](./00019_ダッシュボード画面のfrontend実装.md) / [#00016 画面デザイン叩き台の作成](./00016_画面デザイン叩き台の作成（ベーススタイル・主要フロー6画面）.md)
 
@@ -14,12 +14,13 @@
 
 ## 受け入れ条件
 
-- [ ] 生成条件入力／生成中／生成失敗の3状態がHTML叩き台の仕様通りに実装されている
-- [ ] `POST /api/v1/question-sets` のリクエスト/レスポンス型定義があり、モックでS-04への遷移を確認できる
-- [ ] `npm run build`が通る
-- [ ] 既存のlint（ESLint/markdownlint等）が引き続き通る
-- [ ] ローカルでdev serverを起動し、デスクトップ/モバイルでレイアウト崩れ・コンソールエラーがないことを確認している
+- [x] 生成条件入力／生成中／生成失敗の3状態がHTML叩き台の仕様通りに実装されている
+- [x] `POST /api/v1/question-sets` のリクエスト/レスポンス型定義があり、モックでS-04への遷移を確認できる
+- [x] `npm run build`が通る
+- [x] 既存のlint（ESLint/markdownlint等）が引き続き通る
+- [x] ローカルでdev serverを起動し、デスクトップ/モバイルでレイアウト崩れ・コンソールエラーがないことを確認している
 
 ## 作業ログ
 
-- YYYY-MM-DD 着手
+- 2026-08-10 着手
+- 2026-08-10 完了。`ielts-creater-frontend` feat/ticket-00020 で実装（PR #16、#00019のブランチに積み上げ）。生成条件入力（セクション/トピックchip+自由入力/難易度バンド）・生成中（ポーリングで経過時間からGENERATING→READY/FAILEDへ遷移するモック）・生成失敗の3状態を実装。`POST /api/v1/question-sets`・`GET /api/v1/question-sets/{id}`の型を定義し、生成完了で`/practice/{questionSetId}`へ遷移することをclaude-in-chromeで確認（Reading/Listening双方、および生成失敗センチネルでのエラー状態・再生成導線も確認）。デスクトップ(1440px)/モバイル(390px)双方でレイアウト崩れ・コンソールエラーがないことを確認
