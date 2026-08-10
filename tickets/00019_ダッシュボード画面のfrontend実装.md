@@ -1,7 +1,7 @@
 # #00019 ダッシュボード画面（S-07）のfrontend実装
 
 - 対象リポジトリ: root / frontend
-- ステータス: 未着手
+- ステータス: 進行中
 - type: feat
 - 関連ドキュメント: [画面遷移図](../docs/画面遷移図.md) / [docs/screen-drafts/s-07_dashboard.html](../docs/screen-drafts/s-07_dashboard.html) / [docs/screen-drafts/00_style-guide.html](../docs/screen-drafts/00_style-guide.html)（アプリナビゲーションシェル参照）/ [frontendリポジトリ docs/画面設計書/S-07_ダッシュボード画面.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/画面設計書/S-07_ダッシュボード画面.md) / [backendリポジトリ docs/API設計書/GET_dashboard-summary.md](https://github.com/h-fujiwara-dev/ielts-creater-backend/blob/main/docs/API設計書/GET_dashboard-summary.md) / [GET_me.md](https://github.com/h-fujiwara-dev/ielts-creater-backend/blob/main/docs/API設計書/GET_me.md) / [#00016 画面デザイン叩き台の作成](./00016_画面デザイン叩き台の作成（ベーススタイル・主要フロー6画面）.md)
 
@@ -24,4 +24,4 @@
 
 ## 作業ログ
 
-- YYYY-MM-DD 着手
+- 2026-08-10 着手
