@@ -1,7 +1,7 @@
 # #XXXXX タイトル
 
 - 対象リポジトリ: root / frontend / backend / infra（該当するものを列挙）
-- ステータス: 未着手
+- ステータス: 未対応
 - type: feat / fix / docs / refactor / test / chore など（Conventional Commits準拠）
 - 関連ドキュメント:
 
