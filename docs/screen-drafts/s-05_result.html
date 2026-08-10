@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>S-05 結果画面 | IELTS Creator 画面デザイン叩き台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/tokens.css" />
+<link rel="stylesheet" href="assets/components.css" />
+<style>
+  .score-ring {
+    position: relative;
+    width: 9rem;
+    height: 9rem;
+    flex-shrink: 0;
+  }
+  .score-ring__value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .result-item {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .result-item:last-child {
+    border-bottom: none;
+  }
+  .result-item__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .result-item__answer {
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+    color: var(--color-navy);
+  }
+  .result-item__explanation {
+    margin-top: 0.6rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: var(--radius-md);
+    background: var(--color-bg-muted);
+    font-size: var(--text-sm);
+    color: var(--color-muted-foreground);
+  }
+</style>
+</head>
+<body>
+
+<header class="app-nav">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+    <span class="brand-logo">
+      <span class="brand-logo__mark">◆</span>
+      IELTS Creator
+    </span>
+    <nav class="app-nav__links">
+      <a class="app-nav__link" href="s-07_dashboard.html">ダッシュボード</a>
+      <a class="app-nav__link" href="s-03_question-generation.html">問題生成</a>
+      <a class="app-nav__link" href="s-06_history.html">履歴一覧</a>
+    </nav>
+    <div class="app-nav__user">
+      <span class="app-nav__avatar">YT</span>
+      <span class="app-nav__username text-sm font-semibold" style="color: var(--color-navy)">Yuki T.</span>
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-3xl px-6 py-10">
+
+  <div class="mb-8">
+    <p class="text-sm font-bold" style="color: var(--color-orange)">S-05</p>
+    <h1 class="mt-1 text-2xl font-extrabold" style="color: var(--color-navy)">結果画面</h1>
+    <p class="mt-1 text-sm" style="color: var(--color-muted-foreground)">採点結果（スコア・正誤・解説）を表示する画面</p>
+  </div>
+
+  <!-- Score summary -->
+  <div class="card">
+    <div class="card__content flex flex-wrap items-center gap-6 py-8">
+      <div class="score-ring">
+        <svg viewBox="0 0 120 120" width="144" height="144">
+          <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-bg-muted)" stroke-width="12" />
+          <circle
+            cx="60"
+            cy="60"
+            r="52"
+            fill="none"
+            stroke="var(--color-orange)"
+            stroke-width="12"
+            stroke-linecap="round"
+            stroke-dasharray="326.7"
+            stroke-dashoffset="88"
+            transform="rotate(-90 60 60)"
+          />
+        </svg>
+        <div class="score-ring__value">
+          <span class="text-2xl font-extrabold" style="color: var(--color-navy)">73%</span>
+          <span class="text-xs" style="color: var(--color-muted-foreground)">11 / 15問</span>
+        </div>
+      </div>
+      <div class="flex-1">
+        <div class="flex flex-wrap gap-2">
+          <span class="badge badge-navy">Reading</span>
+          <span class="badge badge-neutral">Band 6–7</span>
+          <span class="badge badge-neutral">Environment</span>
+        </div>
+        <p class="mt-3 text-sm" style="color: var(--color-muted-foreground)">
+          2026年8月10日 14:32 提出 ・ 所要時間 18分
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="s-03_question-generation.html" class="btn btn-primary">もう一度挑戦する</a>
+          <a href="s-07_dashboard.html" class="btn btn-outline">ダッシュボードへ戻る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Per-question results -->
+  <div class="mt-6 card">
+    <div class="card__header">
+      <div class="card__title">設問ごとの結果</div>
+    </div>
+    <div class="card__content">
+
+      <div class="result-item">
+        <div class="result-item__row">
+          <p class="text-sm font-semibold" style="color: var(--color-navy)">1. Green spaces have no measurable effect on air quality.</p>
+          <span class="badge badge-success">正解</span>
+        </div>
+        <p class="result-item__answer">あなたの回答: <strong>FALSE</strong></p>
+        <div class="result-item__explanation">
+          本文冒頭で「improving air quality」と明記されており、影響があると述べられているためFALSEが正解です。
+        </div>
+      </div>
+
+      <div class="result-item">
+        <div class="result-item__row">
+          <p class="text-sm font-semibold" style="color: var(--color-navy)">3. All cities have adopted mandatory green space requirements.</p>
+          <span class="badge badge-error">不正解</span>
+        </div>
+        <p class="result-item__answer">あなたの回答: <strong>NOT GIVEN</strong> / 正解: <strong>FALSE</strong></p>
+        <div class="result-item__explanation">
+          本文では「Some cities have responded by mandating...」とあり、一部の都市のみが義務化していると読み取れるためFALSEが正解です。
+        </div>
+      </div>
+
+      <div class="result-item">
+        <div class="result-item__row">
+          <p class="text-sm font-semibold" style="color: var(--color-navy)">4. Some cities use ___ and rooftop parks as space-efficient alternatives.</p>
+          <span class="badge badge-success">正解</span>
+        </div>
+        <p class="result-item__answer">あなたの回答: <strong>vertical gardens</strong></p>
+      </div>
+
+      <div class="result-item">
+        <div class="result-item__row">
+          <p class="text-sm font-semibold" style="color: var(--color-navy)">7. Paragraph 3の見出し</p>
+          <span class="badge badge-warning">未回答</span>
+        </div>
+        <p class="result-item__answer">あなたの回答: <span style="color: var(--color-muted-foreground)">（未回答）</span> / 正解: <strong>Economic pressure on urban land</strong></p>
+        <div class="result-item__explanation">
+          未回答のため不正解として扱われます。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="border-t" style="border-color: var(--color-border)">
+  <div class="mx-auto max-w-6xl px-6 py-6 text-xs" style="color: var(--color-muted-foreground)">
+    IELTS Creator — 画面デザイン叩き台（静的プロトタイプ） / <a href="README.md" style="color: var(--color-navy)">一覧に戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>
