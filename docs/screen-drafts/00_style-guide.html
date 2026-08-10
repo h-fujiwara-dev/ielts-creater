@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>スタイルガイド | IELTS Creator 画面デザイン叩き台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/tokens.css" />
+<link rel="stylesheet" href="assets/components.css" />
+</head>
+<body>
+
+<header class="marketing-nav">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <span class="brand-logo">
+      <span class="brand-logo__mark">◆</span>
+      IELTS Creator
+    </span>
+    <span class="badge badge-orange">Design Draft</span>
+  </div>
+</header>
+
+<main class="mx-auto max-w-6xl px-6 py-12">
+
+  <section class="mb-16">
+    <p class="text-sm font-bold" style="color: var(--color-orange)">Base Design</p>
+    <h1 class="mt-2 text-3xl font-extrabold md:text-4xl" style="color: var(--color-navy)">
+      共通スタイルガイド
+    </h1>
+    <p class="mt-3 max-w-2xl text-sm" style="color: var(--color-muted-foreground)">
+      TOP画面（S-01）で確定した配色・フォント・コンポーネントパターンをベースに、ログイン後の画面群（S-02〜S-07）で使う共通デザインをまとめたもの。静的HTMLの叩き台であり、実装コードではない。
+    </p>
+  </section>
+
+  <!-- Colors -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">カラー</h2>
+    <p class="mt-1 text-sm" style="color: var(--color-muted-foreground)">ブランドカラーはTOP画面から継承。success/warning/errorはアプリ画面向けに新規定義。</p>
+
+    <p class="mt-6 text-xs font-bold tracking-wide uppercase" style="color: var(--color-muted-foreground)">Brand</p>
+    <div class="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-navy)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Navy</div><div class="swatch__value">#0F172A</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-navy-light)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Navy Light</div><div class="swatch__value">#1E293B</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-orange)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Orange</div><div class="swatch__value">#F97316</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-orange-light)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Orange Light</div><div class="swatch__value">#FDBA74</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-blue)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Blue</div><div class="swatch__value">#4640DE</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-lavender)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Lavender</div><div class="swatch__value">#EEF1FF</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-cream)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Cream</div><div class="swatch__value">#FFFDF9</div></div>
+      </div>
+    </div>
+
+    <p class="mt-8 text-xs font-bold tracking-wide uppercase" style="color: var(--color-muted-foreground)">Semantic（新規）</p>
+    <div class="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-success)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Success</div><div class="swatch__value">#15803D</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-warning)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Warning</div><div class="swatch__value">#B45309</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-error)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Error</div><div class="swatch__value">#B91C1C</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-bg-muted)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Muted BG</div><div class="swatch__value">#F8FAFC</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: var(--color-border)"></div>
+        <div class="swatch__meta"><div class="swatch__name">Border</div><div class="swatch__value">#E2E8F0</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">タイポグラフィ</h2>
+    <p class="mt-1 text-sm" style="color: var(--color-muted-foreground)">Plus Jakarta Sans（英数字）+ Noto Sans JP（日本語）</p>
+    <div class="mt-6 flex flex-col gap-4">
+      <div class="text-3xl font-extrabold" style="color: var(--color-navy)">見出し1 / Heading 1 — 2.25rem / 800</div>
+      <div class="text-2xl font-bold" style="color: var(--color-navy)">見出し2 / Heading 2 — 1.75rem / 700</div>
+      <div class="text-xl font-bold" style="color: var(--color-navy)">見出し3 / Heading 3 — 1.375rem / 700</div>
+      <div class="text-lg font-semibold" style="color: var(--color-navy)">見出し4 / Heading 4 — 1.125rem / 600</div>
+      <div class="text-base" style="color: var(--color-navy)">本文 / Body — 0.9375rem / 400。設問文・説明文などに使用する標準サイズ。</div>
+      <div class="text-sm" style="color: var(--color-muted-foreground)">キャプション / Caption — 0.8125rem / 400。補足・メタ情報に使用する。</div>
+    </div>
+  </section>
+
+  <!-- Buttons -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">ボタン</h2>
+    <p class="mt-1 text-sm" style="color: var(--color-muted-foreground)">primary（ネイビー）を主要アクション、accent（オレンジ）はナビのCTA等アクセント用途に限定して使う。</p>
+    <div class="mt-5 flex flex-wrap items-center gap-3">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-accent">Accent</button>
+      <button class="btn btn-outline">Outline</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-destructive">Destructive</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+    </div>
+    <div class="mt-4 flex flex-wrap items-center gap-3">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary">Default</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+      <button class="btn btn-primary btn-pill">Pill</button>
+      <button class="btn btn-primary">
+        <span class="spinner spinner-light"></span>
+        処理中…
+      </button>
+    </div>
+  </section>
+
+  <!-- Forms -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">フォーム部品</h2>
+    <div class="mt-5 grid gap-6 md:grid-cols-2">
+      <div class="field">
+        <label class="label">メールアドレス</label>
+        <input class="input" type="email" placeholder="you@example.com" />
+        <p class="form-hint">ログインに使用するメールアドレスを入力してください</p>
+      </div>
+      <div class="field is-error">
+        <label class="label">パスワード</label>
+        <input class="input" type="password" value="wrongpass" />
+        <p class="form-error">✕ メールアドレスまたはパスワードが正しくありません</p>
+      </div>
+      <div class="field">
+        <label class="label">難易度</label>
+        <select class="select">
+          <option>Band 4–5</option>
+          <option>Band 5–6</option>
+          <option selected>Band 6–7</option>
+          <option>Band 7–8+</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="label">入力欄（disabled）</label>
+        <input class="input" value="編集できません" disabled />
+      </div>
+      <div class="field md:col-span-2">
+        <label class="label">トピック（自由入力）</label>
+        <textarea class="textarea" placeholder="例: 環境問題、リモートワークの普及について"></textarea>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-3 sm:grid-cols-3">
+      <label class="radio-option is-selected">
+        <input type="radio" name="sg-section" checked />
+        Reading
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="sg-section" />
+        Listening
+      </label>
+      <label class="checkbox-option">
+        <input type="checkbox" checked />
+        選択肢A・Bの複数正解
+      </label>
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-2">
+      <span class="chip is-selected">Environment</span>
+      <span class="chip">Technology</span>
+      <span class="chip">Education</span>
+      <span class="chip">Health</span>
+    </div>
+  </section>
+
+  <!-- Badges & Alerts -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">バッジ・アラート</h2>
+    <div class="mt-5 flex flex-wrap gap-2">
+      <span class="badge badge-navy">Reading</span>
+      <span class="badge badge-orange">Listening</span>
+      <span class="badge badge-success">正解</span>
+      <span class="badge badge-error">不正解</span>
+      <span class="badge badge-warning">生成中</span>
+      <span class="badge badge-neutral">Band 6–7</span>
+    </div>
+    <div class="mt-5 flex flex-col gap-3">
+      <div class="alert alert-info">ℹ️ 未回答のまま提出すると、その設問は不正解として扱われます。</div>
+      <div class="alert alert-success">✓ 採点が完了しました。結果は履歴一覧からいつでも確認できます。</div>
+      <div class="alert alert-warning">⚠ 音声URLの有効期限が切れています。ページを再読み込みしてください。</div>
+      <div class="alert alert-error">✕ 問題の生成に失敗しました。時間をおいて再度お試しください。</div>
+    </div>
+  </section>
+
+  <!-- Cards & Stat tiles -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">カード・統計タイル</h2>
+    <div class="mt-5 grid gap-4 sm:grid-cols-3">
+      <div class="stat-tile">
+        <div class="stat-tile__label">総受験回数</div>
+        <div class="stat-tile__value">128</div>
+        <div class="stat-tile__delta is-up">↑ 先週比 +12</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-tile__label">Reading平均正答率</div>
+        <div class="stat-tile__value">72%</div>
+        <div class="stat-tile__delta is-up">↑ +4pt</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-tile__label">Listening平均正答率</div>
+        <div class="stat-tile__value">65%</div>
+        <div class="stat-tile__delta is-down">↓ -2pt</div>
+      </div>
+    </div>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2">
+      <div class="card">
+        <div class="card__header">
+          <div class="card__title">カード（デフォルト）</div>
+          <div class="card__description">補足の説明テキストが入ります</div>
+        </div>
+        <div class="card__content">
+          <p class="text-sm" style="color: var(--color-muted-foreground)">本文コンテンツ領域。</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-outline btn-sm">アクション</button>
+        </div>
+      </div>
+      <div class="card card--interactive">
+        <div class="card__header">
+          <div class="card__title">カード（interactive）</div>
+          <div class="card__description">ホバーで浮き上がる。履歴一覧などで使用</div>
+        </div>
+        <div class="card__content">
+          <p class="text-sm" style="color: var(--color-muted-foreground)">クリック可能な要素に使う。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs & Pagination -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">タブ・ページング</h2>
+    <div class="mt-5 flex flex-wrap items-center gap-8">
+      <div class="tabs">
+        <button class="tab is-active">すべて</button>
+        <button class="tab">Reading</button>
+        <button class="tab">Listening</button>
+      </div>
+      <div class="pagination">
+        <button class="pagination__btn" disabled>‹</button>
+        <button class="pagination__btn is-active">1</button>
+        <button class="pagination__btn">2</button>
+        <button class="pagination__btn">3</button>
+        <button class="pagination__btn">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loading -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">ローディング・進捗</h2>
+    <div class="mt-5 flex flex-wrap items-center gap-8">
+      <span class="spinner"></span>
+      <div class="w-48">
+        <div class="progress-track"><div class="progress-fill" style="width: 62%"></div></div>
+        <p class="mt-1 text-xs" style="color: var(--color-muted-foreground)">問題を生成しています…（約8秒）</p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <div class="skeleton" style="width: 12rem; height: 0.9rem"></div>
+        <div class="skeleton" style="width: 8rem; height: 0.9rem"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audio player -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">音声プレイヤー</h2>
+    <div class="mt-5 max-w-md">
+      <div class="audio-player">
+        <button class="audio-player__play">▶</button>
+        <div class="audio-player__track"><div class="audio-player__track-fill"></div></div>
+        <span class="audio-player__time">01:42 / 04:30</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- App navigation shell -->
+  <section class="mb-16">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">アプリナビゲーションシェル</h2>
+    <p class="mt-1 text-sm" style="color: var(--color-muted-foreground)">ログイン後の画面（S-03/S-04/S-05/S-06/S-07）で共通利用するヘッダー。TOP画面のマーケティング用ヘッダー（ロゴ＋ログインCTAのみ）とは別物として新規デザイン。</p>
+    <div class="mt-5 overflow-hidden rounded-xl" style="box-shadow: 0 0 0 1px var(--color-border)">
+      <header class="app-nav">
+        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+          <span class="brand-logo">
+            <span class="brand-logo__mark">◆</span>
+            IELTS Creator
+          </span>
+          <nav class="app-nav__links">
+            <a class="app-nav__link is-active" href="#">ダッシュボード</a>
+            <a class="app-nav__link" href="#">問題生成</a>
+            <a class="app-nav__link" href="#">履歴一覧</a>
+          </nav>
+          <div class="app-nav__user">
+            <span class="app-nav__avatar">YT</span>
+            <span class="app-nav__username text-sm font-semibold" style="color: var(--color-navy)">Yuki T.</span>
+          </div>
+        </div>
+      </header>
+    </div>
+  </section>
+
+  <!-- Empty state -->
+  <section class="mb-4">
+    <h2 class="text-xl font-bold" style="color: var(--color-navy)">空状態</h2>
+    <div class="mt-5 card">
+      <div class="empty-state">
+        <div class="text-2xl">🗂️</div>
+        <p class="text-sm font-semibold" style="color: var(--color-navy)">まだ受験履歴がありません</p>
+        <p class="text-xs">問題を生成して最初のIELTS練習を始めましょう</p>
+        <button class="btn btn-primary btn-sm mt-2">問題を生成する</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t" style="border-color: var(--color-border)">
+  <div class="mx-auto max-w-6xl px-6 py-6 text-xs" style="color: var(--color-muted-foreground)">
+    IELTS Creator — 画面デザイン叩き台（静的プロトタイプ） / <a href="README.md" style="color: var(--color-navy)">一覧に戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>
