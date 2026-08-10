@@ -1,7 +1,7 @@
 # #00018 ログイン／サインアップ画面（S-02）のfrontend実装
 
 - 対象リポジトリ: root / frontend
-- ステータス: 未着手
+- ステータス: 進行中
 - type: feat
 - 関連ドキュメント: [画面遷移図](../docs/画面遷移図.md) / [docs/screen-drafts/s-02_login-signup.html](../docs/screen-drafts/s-02_login-signup.html) / [システム要件定義書 8章 アーキテクチャ](../docs/システム要件定義書.md#8-アーキテクチャ) / [frontendリポジトリ docs/画面設計書/S-02_ログインサインアップ画面.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/画面設計書/S-02_ログインサインアップ画面.md) / [#00016 画面デザイン叩き台の作成](./00016_画面デザイン叩き台の作成（ベーススタイル・主要フロー6画面）.md)
 
@@ -24,4 +24,4 @@
 
 ## 作業ログ
 
-- YYYY-MM-DD 着手
+- 2026-08-10 着手
