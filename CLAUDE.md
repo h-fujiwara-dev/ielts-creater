@@ -28,6 +28,7 @@
 - 作業ブランチ: `develop`から作成し、コミットメッセージのtype（Conventional Commits準拠）を接頭辞とする（例: `feat/xxx`, `fix/xxx`, `docs/xxx`, `chore/xxx`）
 - 作業ブランチをpushすると、GitHub Actionsが自動で`develop`宛にPRを作成する（[.github/workflows/auto-pr.yml](./.github/workflows/auto-pr.yml)）
 - `develop`→`main`のリリースマージも、作業ブランチ→`develop`のPRと同じルール（レビュー0件可・markdownlint必須チェック）に従う
+- PRのマージ（`develop`・`main`とも）は必ずユーザーが手動で行う。Claudeは`gh pr merge`等でPRを勝手にマージしない（PR作成まではOK）
 - ielts-creater / -frontend / -backend / -infra の4リポジトリ共通のルール
 
 ## チケット運用（Claudeが作業する際のルール）
