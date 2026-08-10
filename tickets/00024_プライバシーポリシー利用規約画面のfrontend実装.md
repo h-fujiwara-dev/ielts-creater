@@ -1,7 +1,7 @@
 # #00024 プライバシーポリシー・利用規約画面（S-08/S-09）のfrontend実装
 
 - 対象リポジトリ: root / frontend
-- ステータス: 未着手
+- ステータス: 進行中
 - type: feat
 - 関連ドキュメント: [画面遷移図](../docs/画面遷移図.md) / [frontendリポジトリ docs/画面設計書/S-08_プライバシーポリシー画面.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/画面設計書/S-08_プライバシーポリシー画面.md) / [frontendリポジトリ docs/画面設計書/S-09_利用規約画面.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/画面設計書/S-09_利用規約画面.md) / [frontendリポジトリ docs/legal/プライバシーポリシー.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/legal/プライバシーポリシー.md) / [frontendリポジトリ docs/legal/利用規約.md](https://github.com/h-fujiwara-dev/ielts-creater-frontend/blob/main/docs/legal/利用規約.md) / [#00008 プライバシーポリシー・利用規約画面の追加](./00008_プライバシーポリシー利用規約画面の追加.md)
 
@@ -26,4 +26,4 @@
 
 ## 作業ログ
 
-- YYYY-MM-DD 着手
+- 2026-08-10 着手
