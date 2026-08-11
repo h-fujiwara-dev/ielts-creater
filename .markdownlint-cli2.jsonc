@@ -10,6 +10,7 @@
     "node_modules/**",
     "frontend/**",
     "backend/**",
-    "infra/**"
+    "infra/**",
+    ".worktrees/**"
   ]
 }
