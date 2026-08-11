@@ -20,10 +20,10 @@
 
 ## 受け入れ条件
 
-- [ ] システム要件定義書8章（8.1採用技術一覧・8.2全体アーキテクチャ図・8.3AWSインフラ構成図・8.4非機能要件の実現方式）をVercel+Supabase構成に更新する
-- [ ] システム要件定義書9章に本アーキテクチャ決定を記録する
-- [ ] README.md（技術スタック・インフラ構成図・リポジトリ一覧）をVercel+Supabase構成に更新する
-- [ ] ロードマップ.md Phase3の説明をVercel/Supabase前提に更新する
+- [x] システム要件定義書8章（8.1採用技術一覧・8.2全体アーキテクチャ図・8.3AWSインフラ構成図・8.4非機能要件の実現方式）をVercel+Supabase構成に更新する
+- [x] システム要件定義書9章に本アーキテクチャ決定を記録する
+- [x] README.md（技術スタック・インフラ構成図・リポジトリ一覧）をVercel+Supabase構成に更新する
+- [x] ロードマップ.md Phase3の説明をVercel/Supabase前提に更新する
 - [ ] infraリポジトリ: README.mdの「未構築」リスト・今後のモジュール設計方針にSupabase/Vercel前提（RDSモジュール不要・ECSはapi用のみ）を反映する
 - [ ] backendリポジトリ: `docs/実装規約.md`のPhase3記述をSupabase接続前提に更新し、`.env.example`にSupabase接続関連変数を追記する
 - [ ] frontendリポジトリ: `docs/legal/プライバシーポリシー.md`のAmazon RDS記載をSupabaseに更新する
@@ -33,3 +33,4 @@
 
 - 2026-08-11 チケット起票
 - 2026-08-11 着手前にユーザーからインフラ要件変更（フロントエンドVercel化・DBをSupabase化）の依頼を受け、ヒアリング・関連リポジトリ調査の上でチケットを拡張
+- 2026-08-11 root分を実装。システム要件定義書8章（採用技術一覧・全体アーキテクチャ図・AWSインフラ構成図・非機能要件の実現方式）と9章未決事項、README.md（技術スタック・インフラ構成図・リポジトリ一覧）、ロードマップ.md（Phase3説明）をVercel+Supabase構成に更新。markdownlint通過を確認。infra/backend/frontendの追随は別リポジトリでの作業のため未着手
