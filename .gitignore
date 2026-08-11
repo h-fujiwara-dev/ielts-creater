@@ -3,6 +3,9 @@ frontend/
 backend/
 infra/
 
+# Ad-hoc worktrees created by tooling
+.worktrees/
+
 # IDE
 .idea/
 .vscode/

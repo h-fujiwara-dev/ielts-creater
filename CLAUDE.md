@@ -31,7 +31,7 @@
 - 全PR（`develop`・`main`とも）はマージ前にユーザーのapprove（レビュー1件）が必須（`required_approving_review_count: 1`、管理者もバイパス不可）。markdownlint必須チェックも従来通り適用
 - ベースブランチへのpush時、オープン中のPRを自動で最新化する（[.github/workflows/auto-update-branch.yml](./.github/workflows/auto-update-branch.yml)）。「out-of-date」表示による手動更新操作は基本不要になる
 - PRのマージ（`develop`・`main`とも）は必ずユーザーが手動で行う。Claudeは`gh pr merge`等でPRを勝手にマージしない（PR作成まではOK）
-- ielts-creater / -frontend / -backend / -infra の4リポジトリ共通のルール
+- ielts-creater / -frontend / -backend / -infra の4リポジトリ共通のルール。ただし`ielts-creater-infra`のみTerraformの環境分離（`envs/dev` / `envs/prod`）に合わせて`develop`（dev環境向け）と`prd`（prd環境向け）の2系統の統合ブランチを持つ例外運用（`main ← develop ← 作業ブランチ` / `main ← prd ← 作業ブランチ`）。詳細は[infraリポジトリCLAUDE.md](https://github.com/h-fujiwara-dev/ielts-creater-infra/blob/main/CLAUDE.md)参照（[#00045](./tickets/00045_infraのブランチ戦略を環境ごとに分離.md)）
 
 ## チケット運用（Claudeが作業する際のルール）
 
