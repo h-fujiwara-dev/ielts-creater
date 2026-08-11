@@ -23,6 +23,37 @@ AIがIELTS Reading/Listeningの練習問題をその場で生成し、ユーザ�
 - **IaC**: Terraform
 - **CI/CD**: GitHub Actions（リポジトリごとに独立したワークフロー）
 
+## インフラ構成
+
+VPC内のPrivate SubnetにECS Fargate（フロント/バックエンド）とRDSを配置し、Public SubnetのALB経由でのみ到達可能にする構成（設計確定済み、Terraformでコード管理。詳細は[システム要件定義書8章](./docs/システム要件定義書.md#8-アーキテクチャ)を参照）。
+
+```mermaid
+flowchart TB
+    User((ユーザー)) -->|HTTPS| ALB
+
+    subgraph VPC["VPC"]
+        subgraph Public["Public Subnet"]
+            ALB[ALB]
+            NAT[NAT Gateway]
+        end
+        subgraph Private["Private Subnet"]
+            Web["ECS Fargate: web<br/>(Next.js)"]
+            Api["ECS Fargate: api<br/>(Spring Boot)"]
+            Rds[("RDS<br/>PostgreSQL")]
+        end
+    end
+
+    ALB -->|"/*"| Web
+    ALB -->|"/api/*"| Api
+    Api --> Rds
+    Api -.IAM Role.-> S3[("Amazon S3")]
+    Api -.IAM Role.-> Polly[["Amazon Polly"]]
+    Web --> NAT
+    Api --> NAT
+    NAT -->|アウトバウンド| OpenAI[["OpenAI API"]]
+    Cognito[("Amazon Cognito")] -.OIDC.-> ALB
+```
+
 ## ドキュメント
 
 - [業務要件定義書](./docs/業務要件定義書.md) — なぜ・誰のために作るか
