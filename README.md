@@ -10,18 +10,47 @@ AIがIELTS Reading/Listeningの練習問題をその場で生成し、ユーザ�
 | --- | --- |
 | [ielts-creater-frontend](https://github.com/h-fujiwara-dev/ielts-creater-frontend) | Next.js（App Router）+ TypeScript。画面仕様は `docs/画面一覧.md` `docs/画面設計書/` に記載 |
 | [ielts-creater-backend](https://github.com/h-fujiwara-dev/ielts-creater-backend) | Spring Boot 3 + Java 21。API・DB・機能仕様は `docs/` に記載。ローカルPostgresは `docker-compose.yml` で起動 |
-| [ielts-creater-infra](https://github.com/h-fujiwara-dev/ielts-creater-infra) | AWSインフラ（VPC, ECS, RDS, S3, Cognito等）のTerraformコード |
+| [ielts-creater-infra](https://github.com/h-fujiwara-dev/ielts-creater-infra) | AWSインフラ（VPC, ECS, S3, Cognito等）のTerraformコード（DBはSupabase、フロントエンドはVercelでホスティング） |
 
 ## 技術スタック
 
-- **フロントエンド**: Next.js（App Router）+ TypeScript、ECS Fargate上でホスティング
+- **フロントエンド**: Next.js（App Router）+ TypeScript、Vercelでホスティング
 - **バックエンド**: Spring Boot 3 + Java 21、ECS Fargate上でホスティング
-- **データベース**: PostgreSQL（RDS）、Flywayでマイグレーション管理
+- **データベース**: PostgreSQL（Supabase）、Flywayでマイグレーション管理
 - **認証**: Amazon Cognito（User Pool）+ フロントはNextAuth.js、バックエンドはSpring Security Resource Server
 - **AI生成**: OpenAI API（Structured Outputsで問題文・設問を生成）
 - **音声合成**: Amazon Polly（Listening音声、S3に保存）
-- **IaC**: Terraform
-- **CI/CD**: GitHub Actions（リポジトリごとに独立したワークフロー）
+- **IaC**: Terraform（AWS側リソースのみ。Vercel/Supabaseは各サービスで管理）
+- **CI/CD**: GitHub Actions（backend/infra）+ Vercel自動デプロイ（frontend）
+
+## インフラ構成
+
+フロントエンドはVercel、データベースはSupabaseでホスティングし、バックエンド（ECS Fargate）はPrivate SubnetからNAT Gateway経由でSupabase等の外部サービスに接続する構成（詳細は[システム要件定義書8章](./docs/システム要件定義書.md#8-アーキテクチャ)を参照）。
+
+```mermaid
+flowchart TB
+    Vercel((Vercel<br/>Next.js))
+    Supabase[("Supabase<br/>PostgreSQL")]
+
+    subgraph VPC["VPC"]
+        subgraph Public["Public Subnet"]
+            ALB[ALB]
+            NAT[NAT Gateway]
+        end
+        subgraph Private["Private Subnet"]
+            Api["ECS Fargate: api<br/>(Spring Boot)"]
+        end
+    end
+
+    Vercel -->|HTTPS| ALB
+    ALB --> Api
+    Api --> NAT
+    NAT -->|アウトバウンド| Supabase
+    NAT -->|アウトバウンド| OpenAI[["OpenAI API"]]
+    Api -.IAM Role.-> S3[("Amazon S3")]
+    Api -.IAM Role.-> Polly[["Amazon Polly"]]
+    Cognito[("Amazon Cognito")] -.OIDC.-> Vercel
+```
 
 ## ドキュメント
 
