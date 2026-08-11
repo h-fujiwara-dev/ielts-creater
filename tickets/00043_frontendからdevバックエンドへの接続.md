@@ -7,14 +7,15 @@
 
 ## 実現すること
 
-Vercelの制約（dev環境用の一時的なデプロイが運用に見合わない）により、dev環境ではフロントエンドをVercelにデプロイしない。フロントエンドはローカル実行のまま、#00044で構築するAWS上のdevバックエンド（ALB経由のAPI・Cognito User Pool）に接続して、Cognito認証を含む一連の動作を確認できるようにする。
+Vercelの制約（dev環境用の一時的なデプロイが運用に見合わない）により、dev環境ではフロントエンドをVercelにデプロイしない。フロントエンドはローカル実行のまま、#00044で構築するAWS上のdevバックエンド（API Gateway経由のAPI・Cognito User Pool）に接続して、Cognito認証を含む一連の動作を確認できるようにする。
 
-- `BACKEND_API_ORIGIN`は#00044で構築するALBのdevエンドポイントに依存するため、**#00044完了後に着手する**
+- `BACKEND_API_ORIGIN`は#00044で構築したAPI Gatewayのdevエンドポイントに依存するため、**#00044完了後に着手する**（#00044は完了済み。**[方針転換]** 当初想定していたALBではなく、コスト最適化のためAPI Gateway（HTTP API）+ VPC Link + Cloud Mapに変更されている点に注意）
+  - devエンドポイント: `https://g8r1slo0d0.execute-api.ap-northeast-1.amazonaws.com`（`/actuator/health`で疎通確認済み）
 - Vercelへの実デプロイは本チケットのスコープ外（将来、本番相当の別チケットで対応）
 
 ## 受け入れ条件
 
-- [ ] ローカル`.env.local`の`BACKEND_API_ORIGIN`を#00044で構築したALBのdevエンドポイントに向ける
+- [ ] ローカル`.env.local`の`BACKEND_API_ORIGIN`を#00044で構築したAPI Gatewayのdevエンドポイント（`https://g8r1slo0d0.execute-api.ap-northeast-1.amazonaws.com`）に向ける
 - [ ] `COGNITO_CLIENT_ID`/`COGNITO_CLIENT_SECRET`/`COGNITO_ISSUER`/`COGNITO_HOSTED_UI_DOMAIN`をdevのCognito User Pool（実値）に切り替える
 - [ ] CognitoのApp Client許可コールバックURLに、ローカル開発用のリダイレクトURL（`http://localhost:3000/...`）が登録されていることを確認する（infra側`modules/cognito`、必要なら#00044側で対応）
 - [ ] ローカルでログイン〜問題生成〜採点まで、実AWS dev環境（Cognito・ECS api・Supabase）に接続した状態で一連の動作を確認する
