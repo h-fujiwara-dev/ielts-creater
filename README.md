@@ -29,30 +29,9 @@ AIがIELTS Reading/Listeningの練習問題をその場で生成し、ユーザ�
 
 フロントエンドはVercel、データベースはSupabaseでホスティングする。バックエンド（ECS Fargate Spot）はコスト最適化のためALB/NAT Gatewayではなく**API Gateway（HTTP API）+ VPC Link + Cloud Map**（ECS Service Discovery）と**NAT Instance（EC2）**を採用した構成（詳細は[システム要件定義書8章](./docs/システム要件定義書.md#8-アーキテクチャ) / [#00044](./tickets/00044_backendのAWSインフラ構築とSupabase接続.md)を参照）。AWSインフラはdev/prod2環境を構築済みで、prodは独自ドメイン`band-eight.com`（Cloudflare DNS、frontendはVercel Aレコード、Cognito Hosted UIは`auth.band-eight.com`）で公開している（[#00050](./tickets/00050_本番環境のAWSインフラ構築とCICDパイプライン整備.md) / [#00051](./tickets/00051_frontendとbackendの本番環境への初回デプロイ.md)）。
 
-```mermaid
-flowchart TB
-    Vercel(("Vercel<br/>Next.js<br/>band-eight.com"))
-    Supabase[("Supabase<br/>PostgreSQL")]
+![AWSインフラ構成図](./docs/diagrams/aws-infra.svg)
 
-    subgraph VPC["VPC"]
-        subgraph Public["Public Subnet"]
-            APIGW["API Gateway<br/>(HTTP API)"]
-            NAT["NAT Instance<br/>(EC2)"]
-        end
-        subgraph Private["Private Subnet"]
-            Api["ECS Fargate Spot: api<br/>(Spring Boot)"]
-        end
-    end
-
-    Vercel -->|"HTTPS /api/*"| APIGW
-    APIGW -->|"VPC Link + Cloud Map"| Api
-    Api --> NAT
-    NAT -->|アウトバウンド| Supabase
-    NAT -->|アウトバウンド| OpenAI[["OpenAI API"]]
-    Api -.IAM Role.-> S3[("Amazon S3")]
-    Api -.IAM Role.-> Polly[["Amazon Polly"]]
-    Cognito[("Amazon Cognito<br/>auth.band-eight.com")] -.OIDC.-> Vercel
-```
+編集可能なソース: [docs/diagrams/aws-infra.drawio](./docs/diagrams/aws-infra.drawio)（[diagrams.net](https://app.diagrams.net)で開けます）。サービスアイコンはAWS公式draw.ioステンシルと、Vercel/Supabase/OpenAIの公式ブランドアイコン（[Simple Icons](https://simpleicons.org)、出典は[docs/diagrams/icons/ATTRIBUTION.md](./docs/diagrams/icons/ATTRIBUTION.md)）。
 
 ## ドキュメント
 
