@@ -21,12 +21,24 @@
 - テンプレートは `.gitmessage`（`git config commit.template .gitmessage` で有効化済み。cloneし直した場合は再設定が必要）
 - チケット番号は本リポジトリの[tickets/](./tickets/)で採番・管理する
 
+## ブランチ戦略
+
+- `main`: リリース専用ブランチ。直接pushは禁止（管理者含む、PR必須）。`develop`からのリリースPRをマージするタイミングのみ更新する
+- `develop`: 開発統合ブランチ。直接pushは禁止（管理者含む、PR必須）。作業ブランチからのPRはすべてここにマージする
+- 作業ブランチ: `develop`から作成し、コミットメッセージのtype（Conventional Commits準拠）を接頭辞とする（例: `feat/xxx`, `fix/xxx`, `docs/xxx`, `chore/xxx`）
+- 作業ブランチをpushすると、GitHub Actionsが自動で`develop`宛にPRを作成する（[.github/workflows/auto-pr.yml](./.github/workflows/auto-pr.yml)）
+- `develop`→`main`のリリースPRは[.github/workflows/release-pr.yml](./.github/workflows/release-pr.yml)を`workflow_dispatch`で手動実行して作成する（botがPRを作成するため、ユーザー自身がapproveできる）
+- 全PR（`develop`・`main`とも）はマージ前にユーザーのapprove（レビュー1件）が必須（`required_approving_review_count: 1`、管理者もバイパス不可）。markdownlint必須チェックも従来通り適用
+- ベースブランチへのpush時、オープン中のPRを自動で最新化する（[.github/workflows/auto-update-branch.yml](./.github/workflows/auto-update-branch.yml)）。「out-of-date」表示による手動更新操作は基本不要になる
+- PRのマージ（`develop`・`main`とも）は必ずユーザーが手動で行う。Claudeは`gh pr merge`等でPRを勝手にマージしない（PR作成まではOK）
+- ielts-creater / -frontend / -backend / -infra の4リポジトリ共通のルール。ただし`ielts-creater-infra`のみTerraformの環境分離（`envs/dev` / `envs/prod`）に合わせて`develop`（dev環境向け）と`prd`（prd環境向け）の2系統の統合ブランチを持つ例外運用（`main ← develop ← 作業ブランチ` / `main ← prd ← 作業ブランチ`）。詳細は[infraリポジトリCLAUDE.md](https://github.com/h-fujiwara-dev/ielts-creater-infra/blob/main/CLAUDE.md)参照（[#00045](./tickets/00045_infraのブランチ戦略を環境ごとに分離.md)）
+
 ## チケット運用（Claudeが作業する際のルール）
 
-- チケットは[tickets/](./tickets/)配下に1チケット=1ファイルで管理する。運用ルール・一覧は[tickets/README.md](./tickets/README.md)を参照
-- 新規タスクに着手する前に、[`tickets/_template.md`](./tickets/_template.md)から新しい番号でチケットファイルを作成し、ステータスを「進行中」にする
-- 作業中は該当チケットの作業ログに進捗を追記する
-- 完了したら受け入れ条件にチェックを入れ、ステータスを「完了」にし、[tickets/README.md](./tickets/README.md)の一覧も更新する
+- チケットは[tickets/](./tickets/)配下に1チケット=1ファイルで管理する。運用ルールは[tickets/README.md](./tickets/README.md)を参照（一覧は保持しないため、`ls tickets/`でファイルを直接確認する）
+- 新規タスクはまず`docs/ticket-XXXXX`ブランチ（developから作成）で[`tickets/_template.md`](./tickets/_template.md)から新しい番号のチケットファイルを作成し（ステータスは「未対応」のまま）developへPRを出してマージする
+- 実装は、チケットファイルがdevelopにマージされたのを確認してから、あらためてdevelopを起点に実装用ブランチを作成して開始する（チケット定義と実装を同一の未マージブランチにまたがらせない）。着手時のステータス変更は不要（「未対応」のまま）
+- 進行中に都度rootリポジトリへ進捗反映PRを出す必要はない。完了時に受け入れ条件のチェック・ステータス更新・作業ログ記載をまとめて1回のPRで反映すれば十分
 - 実装コミットは `[#チケット番号] type: 概要` でそのチケットに紐づける（対象リポジトリ側で実施）
 
 ## ドキュメント
