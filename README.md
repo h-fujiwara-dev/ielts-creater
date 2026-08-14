@@ -4,6 +4,8 @@ AIがIELTS Reading/Listeningの練習問題をその場で生成し、ユーザ�
 
 本リポジトリは**プロジェクト紹介用（ランディング）リポジトリ**です。全体の要件定義・アーキテクチャと、各実装リポジトリへの導線をまとめています。アプリケーションコードは含みません。
 
+本番環境: <https://band-eight.com>（Vercel Production + ECS Fargate Spot（prod）。Cognito Hosted UIは`auth.band-eight.com`）
+
 ## リポジトリ一覧
 
 | リポジトリ | 内容 |
@@ -25,31 +27,31 @@ AIがIELTS Reading/Listeningの練習問題をその場で生成し、ユーザ�
 
 ## インフラ構成
 
-フロントエンドはVercel、データベースはSupabaseでホスティングし、バックエンド（ECS Fargate）はPrivate SubnetからNAT Gateway経由でSupabase等の外部サービスに接続する構成（詳細は[システム要件定義書8章](./docs/システム要件定義書.md#8-アーキテクチャ)を参照）。
+フロントエンドはVercel、データベースはSupabaseでホスティングする。バックエンド（ECS Fargate Spot）はコスト最適化のためALB/NAT Gatewayではなく**API Gateway（HTTP API）+ VPC Link + Cloud Map**（ECS Service Discovery）と**NAT Instance（EC2）**を採用した構成（詳細は[システム要件定義書8章](./docs/システム要件定義書.md#8-アーキテクチャ) / [#00044](./tickets/00044_backendのAWSインフラ構築とSupabase接続.md)を参照）。AWSインフラはdev/prod2環境を構築済みで、prodは独自ドメイン`band-eight.com`（Cloudflare DNS、frontendはVercel Aレコード、Cognito Hosted UIは`auth.band-eight.com`）で公開している（[#00050](./tickets/00050_本番環境のAWSインフラ構築とCICDパイプライン整備.md) / [#00051](./tickets/00051_frontendとbackendの本番環境への初回デプロイ.md)）。
 
 ```mermaid
 flowchart TB
-    Vercel((Vercel<br/>Next.js))
+    Vercel(("Vercel<br/>Next.js<br/>band-eight.com"))
     Supabase[("Supabase<br/>PostgreSQL")]
 
     subgraph VPC["VPC"]
         subgraph Public["Public Subnet"]
-            ALB[ALB]
-            NAT[NAT Gateway]
+            APIGW["API Gateway<br/>(HTTP API)"]
+            NAT["NAT Instance<br/>(EC2)"]
         end
         subgraph Private["Private Subnet"]
-            Api["ECS Fargate: api<br/>(Spring Boot)"]
+            Api["ECS Fargate Spot: api<br/>(Spring Boot)"]
         end
     end
 
-    Vercel -->|HTTPS| ALB
-    ALB --> Api
+    Vercel -->|"HTTPS /api/*"| APIGW
+    APIGW -->|"VPC Link + Cloud Map"| Api
     Api --> NAT
     NAT -->|アウトバウンド| Supabase
     NAT -->|アウトバウンド| OpenAI[["OpenAI API"]]
     Api -.IAM Role.-> S3[("Amazon S3")]
     Api -.IAM Role.-> Polly[["Amazon Polly"]]
-    Cognito[("Amazon Cognito")] -.OIDC.-> Vercel
+    Cognito[("Amazon Cognito<br/>auth.band-eight.com")] -.OIDC.-> Vercel
 ```
 
 ## ドキュメント
@@ -77,7 +79,7 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
-Phase 1では認証なし・固定devユーザーで動作するため、Cognito/AWS連携前でも「生成→回答→採点」の一連の流れをローカルで確認できます。
+現在はCognito認証が必須のため、ローカルfrontendはAWS dev環境のCognito/backend API（+Supabase）に接続して「生成→回答→採点」の一連の流れを確認します（[#00043](./tickets/00043_frontendからdevバックエンドへの接続.md)）。本番相当の動作は<https://band-eight.com>で確認できます。
 
 ## ローカルのディレクトリ構成
 
