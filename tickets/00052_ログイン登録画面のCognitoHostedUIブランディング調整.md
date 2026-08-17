@@ -1,7 +1,7 @@
 # #00052 ログイン/登録画面のCognito Hosted UIブランディング調整
 
 - 対象リポジトリ: infra / frontend
-- ステータス: 未対応
+- ステータス: 完了
 - type: fix
 - 関連ドキュメント: [#00034 Cognito認証の本実装](./00034_Cognito認証の本実装.md)
 
@@ -17,10 +17,11 @@
 
 ## 受け入れ条件
 
-- [ ] Cognito Hosted UI画面の配色・ロゴがアプリ本体のデザインと統一されている
-- [ ] `terraform plan` / `terraform apply`が通る
-- [ ] 既存の認証フロー（ログイン・新規登録・確認コード入力・ログアウト）に影響がないことを手動確認する
+- [x] Cognito Hosted UI画面の配色・ロゴがアプリ本体のデザインと統一されている
+- [x] `terraform plan` / `terraform apply`が通る
+- [x] 既存の認証フロー（ログイン・新規登録・確認コード入力・ログアウト）に影響がないことを手動確認する
 
 ## 作業ログ
 
 - 2026-08-13 起票
+- 2026-08-13 infra [PR #10](https://github.com/h-fujiwara-dev/ielts-creater-infra/pull/10)でManaged Login brandingのTerraformリソース（`terraform/modules/cognito/hosted-ui.css`等）を追加しdevelopへマージ済み。ステータス更新が漏れていたため今回反映
