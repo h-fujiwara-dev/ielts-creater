@@ -1,4 +1,4 @@
-# #00056 Cognito認証メールをResend経由に切り替え（Custom Email Sender Lambda）
+# #00057 Cognito認証メールをResend経由に切り替え（Custom Email Sender Lambda）
 
 - 対象リポジトリ: infra
 - ステータス: 未対応
@@ -33,4 +33,5 @@ Custom Email Senderトリガーは、Cognitoが確認コードを自前送信せ
 
 ## 作業ログ
 
-- 2026-08-17 起票。#00053のSES独自ドメイン送信方式がAWS SES production access未承認のため採用断念となったことを受け、Resend + Cognito Custom Email Sender Lambda方式で代替する
+- 2026-08-17 起票（当初は#00056として起票）。#00053のSES独自ドメイン送信方式がAWS SES production access未承認のため採用断念となったことを受け、Resend + Cognito Custom Email Sender Lambda方式で代替する
+- 2026-08-18 別セッションが同時期に起票した「ゲスト機能（共有デモアカウント方式）の実装」チケットと番号が#00056で重複したため、本チケットを#00057に採番し直した
