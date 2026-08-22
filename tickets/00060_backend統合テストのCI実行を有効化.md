@@ -1,7 +1,7 @@
 # #00060 backend統合テストのCI実行を有効化
 
 - 対象リポジトリ: root / backend
-- ステータス: 未対応
+- ステータス: 完了
 - type: ci
 - 関連ドキュメント: [#00059 単体テストの拡充とバグ修正](./00059_単体テストの拡充とバグ修正.md) / [backendリポジトリ docs/実装規約.md 5章 テスト方針](https://github.com/h-fujiwara-dev/ielts-creater-backend/blob/main/docs/実装規約.md#5-テスト方針) / [backendリポジトリ .github/workflows/backend-ci.yml](https://github.com/h-fujiwara-dev/ielts-creater-backend/blob/main/.github/workflows/backend-ci.yml)
 
@@ -17,12 +17,18 @@
 
 ## 受け入れ条件
 
-- [ ] GitHub Actions上でDockerが利用可能であることを確認している（追加設定が必要だった場合はその内容を作業ログに記載する）
-- [ ] `backend-ci.yml`に`integrationTest`の実行ステップが追加され、PRの必須チェックとして機能している
-- [ ] 既存9件＋#00059で追加した2件を含む全ての`*IntegrationTest`クラスがCI上で実際に実行され、グリーンであることを確認している
-- [ ] CI実行時にのみ顕在化した不具合があれば、原因を特定し修正している
-- [ ] `./gradlew spotlessCheck test integrationTest`がローカル（Docker利用可能環境）でもグリーンであることを確認している
+- [x] GitHub Actions上でDockerが利用可能であることを確認している（追加設定が必要だった場合はその内容を作業ログに記載する）
+- [x] `backend-ci.yml`に`integrationTest`の実行ステップが追加され、PRの必須チェックとして機能している
+- [x] 既存9件＋#00059で追加した2件を含む全ての`*IntegrationTest`クラスがCI上で実際に実行され、グリーンであることを確認している
+- [x] CI実行時にのみ顕在化した不具合があれば、原因を特定し修正している
+- [x] `./gradlew spotlessCheck test integrationTest`がローカル（Docker利用可能環境）でもグリーンであることを確認している
 
 ## 作業ログ
 
 - 2026-08-22 起票
+- 2026-08-22 着手。`backend-ci.yml`の`spotlessCheck & test`ジョブ内に`integrationTest`実行ステップを追加。GitHub Actions `ubuntu-latest`ランナーはDocker標準搭載のため追加設定は不要だった（`docker/setup-docker-action`等は使わずそのまま動作）。初回CI実行で`QuestionSetApiIntegrationTest`の3件（`readingGenerationReachesReadyAndDetailIsRetrievable`/`listeningGenerationReachesReadyWithDownloadableAudioSegments`/`additionalGenerationRequestIsRateLimitedOnceDailyLimitIsReached`）が429 TOO_MANY_REQUESTSで失敗
+  - **原因調査**: ローカルにDocker Desktopを起動し`./gradlew integrationTest`で再現。`attempt-fixture.sql`・`dashboard-fixture.sql`が同一dev-user向けに計3件の`question_set`を`created_at`省略（=本日日付）で挿入しており、`QuestionSetGenerationService.checkDailyLimit`（同一user_idの当日生成2件上限）を、同一JVM内で後続実行される`QuestionSetApiIntegrationTest`が開始する前に使い切っていたことが判明。各`*IntegrationTest`クラスがこれまで単独でしか実行されてこなかった（本チケットが初めてのCI一括実行）ため顕在化していなかった
+  - **修正**: 両フィクスチャの`question_set.created_at`を明示的に過去日付（2日前）に固定し、当日カウントの対象外にすることで解消。`./gradlew spotlessCheck test integrationTest`がローカル・CIともにグリーンであることを確認
+  - `docs/実装規約.md`1.3節・5章の該当記述も実態（`integrationTest`がCI必須チェックに含まれる）に合わせて更新
+  - [backend PR #40](https://github.com/h-fujiwara-dev/ielts-creater-backend/pull/40)を作成・マージ済み
+- 2026-08-22 [backend PR #40](https://github.com/h-fujiwara-dev/ielts-creater-backend/pull/40)のマージを確認。受け入れ条件を全てチェックしステータスを「完了」に更新
