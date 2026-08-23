@@ -16,3 +16,6 @@ infra/
 
 # Node
 node_modules/
+
+# Playwright MCP tool artifacts
+.playwright-mcp/
