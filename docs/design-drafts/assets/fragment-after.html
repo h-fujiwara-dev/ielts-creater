@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>After: Cognito Hosted UI（#00065改善案）</title>
+<link rel="stylesheet" href="cognito-hosted-ui.proposal.css" />
+<style>
+  /*
+   * DOM構造は実機と同じ入れ子（.background-customizable の内側に .banner-customizable）。
+   * overflow: hidden は cognito-hosted-ui.proposal.css 側の .background-customizable に
+   * 指定済みのため、ここでは構造を合わせるだけでカードの角が自動的に揃う。
+   *
+   * 文言は日本語表記にしている（#00065、ユーザー指摘対応）。ただし実際のCognito Hosted UI
+   * 本体でこれを実現する技術的手段は確立できていない（詳細はtickets/00065_...md参照）。
+   */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #8f8f8f; /* ページ全体の背景は改善案でも制御不可（既知の制約） */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 16px;
+  }
+  .background-customizable { width: 100%; max-width: 340px; }
+  .banner-customizable { text-align: center; }
+  .modal-body { padding: 28px 24px; }
+  .field-row { margin-bottom: 14px; text-align: left; }
+  .label-customizable { display: block; font-size: 13px; margin-bottom: 5px; }
+  .inputField-customizable { width: 100%; padding: 9px 10px; font-size: 14px; }
+  .submitButton-customizable { width: 100%; margin-top: 6px; padding: 10px; font-size: 14px; cursor: pointer; }
+  .redirect-row { display: flex; justify-content: space-between; margin-top: 0; margin-bottom: 14px; font-size: 13px; }
+  .redirect-customizable { text-decoration: none; }
+  .legalText-customizable { font-size: 11px; text-align: center; margin-top: 20px; }
+  .errorMessage-customizable { font-size: 13px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+<div class="background-customizable">
+  <div class="banner-customizable">
+    <img class="logo-customizable" src="logo-mark.svg" alt="IELTS Creator" />
+  </div>
+  <div class="modal-body">
+    <p class="textDescription-customizable">メールアドレスとパスワードでログイン</p>
+    <div class="field-row">
+      <label class="label-customizable">メールアドレス</label>
+      <input class="inputField-customizable" type="email" placeholder="you@example.com" />
+    </div>
+    <div class="field-row">
+      <label class="label-customizable">パスワード</label>
+      <input class="inputField-customizable" type="password" placeholder="パスワードを入力" />
+    </div>
+    <div class="redirect-row">
+      <a class="redirect-customizable" href="#">パスワードをお忘れですか？</a>
+      <span></span>
+    </div>
+    <button class="submitButton-customizable">ログイン</button>
+    <p class="legalText-customizable"><a class="redirect-customizable" href="#">アカウントをお持ちでない方は新規登録</a></p>
+  </div>
+</div>
+
+<div class="background-customizable">
+  <div class="banner-customizable">
+    <img class="logo-customizable" src="logo-mark.svg" alt="IELTS Creator" />
+  </div>
+  <div class="modal-body">
+    <p class="errorMessage-customizable">メールアドレスまたはパスワードが正しくありません</p>
+    <div class="field-row">
+      <label class="label-customizable">メールアドレス</label>
+      <input class="inputField-customizable" type="email" placeholder="you@example.com" />
+    </div>
+    <div class="field-row">
+      <label class="label-customizable">パスワード</label>
+      <input class="inputField-customizable" type="password" placeholder="パスワードを入力" />
+    </div>
+    <button class="submitButton-customizable">ログイン</button>
+  </div>
+</div>
+
+</body>
+</html>
