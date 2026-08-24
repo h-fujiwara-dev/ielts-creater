@@ -22,9 +22,14 @@
  *   留まる（tickets/00065_...md 参照）
  * - ロゴ画像は aws_cognito_user_pool_ui_customization の image_file 属性で別途設定する
  *   （.logo-customizable はそのロゴ画像のサイズ・余白のみを制御する）
- * - .inputField-customizable:focus / .redirect-customizable:hover 等の疑似クラスは
- *   標準的なCSSとして機能する想定だが、AWSの公式ドキュメントで明示的に保証されているわけ
- *   ではないため、実装チケットでdev環境実機確認が必要
+ * - .inputField-customizable:focus / .submitButton-customizable:hover は
+ *   Cognito Hosted UIが公式に許可している疑似クラスの組み合わせ。一方
+ *   .redirect-customizable:hover や .redirect-customizable a のような子孫セレクタは
+ *   SetUICustomization APIから InvalidParameterException（許可クラス一覧に無い）で
+ *   拒否されることを#00067のdev環境実機確認で確認済み。「Need an account? Sign up」の
+ *   うちSign up部分はCognito側マークアップ上、親<a class="redirect-customizable">の
+ *   子<a>（クラスなし）としてネストされているため、色を継承させることができず
+ *   Cognito標準の青のまま残る（CSSカスタマイズの範囲では解決不可）
  * - 送信ボタン・リンクの配色はWCAG AA基準（4.5:1）を満たすよう見直し済み（#00065）。
  *   白文字onオレンジ（旧: 約2.9:1）→ ネイビー文字onオレンジ（約6.2:1）、
  *   オレンジ文字onリンク（旧: 約2.8:1）→ 濃いオレンジ#c2410c（約5.1:1）
@@ -114,9 +119,13 @@
     "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
 }
 
-.redirect-customizable:hover {
-  color: #9a3412; /* オレンジ800相当。hoverでさらに濃く */
-}
+/*
+ * .redirect-customizable:hover はCognito Hosted UI（Classic）の許可クラス一覧に無く、
+ * SetUICustomization APIが InvalidParameterException で拒否する（#00067でdev環境
+ * 実機確認時に判明）。AWSが公式に:hoverをサポートしているのは
+ * .idpButton-customizable:hover / .socialButton-customizable:hover /
+ * .submitButton-customizable:hover の3つのみのため、ここでは追加しない。
+ */
 
 .submitButton-customizable {
   background-color: #f97316;
