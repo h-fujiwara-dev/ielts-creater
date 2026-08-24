@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Before: Cognito Hosted UI（#00052時点の現状）</title>
+<link rel="stylesheet" href="current-hosted-ui.css" />
+<style>
+  /*
+   * ここから下は「現状のhosted-ui.css（8ルール）ではカバーされていない要素」の
+   * AWSデフォルトスタイルの近似。https://auth.band-eight.com/login の実機確認（#00065）を
+   * もとにした近似値であり、AWS側の正確な値ではない。
+   *
+   * DOM構造は実機と同じ入れ子にしている：.background-customizable がカード全体を包む
+   * 外側コンテナ（実機は overflow: hidden 付き）で、.banner-customizable はその内側の
+   * 子要素。current-hosted-ui.css（#00052時点）には overflow: hidden が無いため、
+   * バナーの四角い背景がカードの角からわずかにはみ出て見えるのが現状の見た目（後述の
+   * .banner-customizable に border-radius を付けていないのはこれを再現するため）。
+   */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif; /* Hosted UIの現状デフォルトフォント。改善案でも変更していない箇所 */
+    background: #8f8f8f; /* ページ全体の背景。.background-customizableでは制御不可のAWS標準色（近似） */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 16px;
+  }
+  .background-customizable {
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+  .modal-body { padding: 28px 24px; }
+  .field-row { margin-bottom: 14px; text-align: left; }
+  .label-customizable { display: block; font-size: 13px; margin-bottom: 5px; }
+  .inputField-customizable {
+    width: 100%;
+    padding: 9px 10px;
+    font-size: 14px;
+    color: #16191f;
+    background: #ffffff;
+    border: 1px solid #879596;
+    border-radius: 4px; /* 実機computed styleで確認した値 */
+  }
+  .submitButton-customizable {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    font-size: 14px;
+    color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 4px; /* 実機computed styleで確認した値 */
+    cursor: pointer;
+  }
+  .redirect-row { display: flex; justify-content: space-between; margin-top: 0; margin-bottom: 14px; font-size: 13px; }
+  .redirect-customizable { color: #0972d3; text-decoration: none; } /* AWSデフォルトのリンク色（近似）。.redirect-customizable未設定のため */
+  .redirect-customizable:hover { text-decoration: underline; }
+  .legalText-customizable { font-size: 11px; text-align: center; margin-top: 20px; }
+  .errorMessage-customizable {
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: #d13212; /* AWSデフォルトのエラー色（近似）。.errorMessage-customizable未設定のため */
+  }
+</style>
+</head>
+<body>
+
+<div class="background-customizable">
+  <div class="banner-customizable"></div>
+  <div class="modal-body">
+    <p class="textDescription-customizable">Sign in with your email and password</p>
+    <div class="field-row">
+      <label class="label-customizable">Email</label>
+      <input class="inputField-customizable" type="email" placeholder="name@host.com" />
+    </div>
+    <div class="field-row">
+      <label class="label-customizable">Password</label>
+      <input class="inputField-customizable" type="password" placeholder="Password" />
+    </div>
+    <div class="redirect-row">
+      <a class="redirect-customizable" href="#">Forgot your password?</a>
+      <span></span>
+    </div>
+    <button class="submitButton-customizable">Sign in</button>
+    <p class="legalText-customizable"><a class="redirect-customizable" href="#">Need an account? Sign up</a></p>
+  </div>
+</div>
+
+<div class="background-customizable">
+  <div class="banner-customizable"></div>
+  <div class="modal-body">
+    <p class="errorMessage-customizable">Incorrect username or password.</p>
+    <div class="field-row">
+      <label class="label-customizable">Email</label>
+      <input class="inputField-customizable" type="email" placeholder="name@host.com" />
+    </div>
+    <div class="field-row">
+      <label class="label-customizable">Password</label>
+      <input class="inputField-customizable" type="password" placeholder="Password" />
+    </div>
+    <button class="submitButton-customizable">Sign in</button>
+  </div>
+</div>
+
+</body>
+</html>

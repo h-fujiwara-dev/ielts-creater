@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cognito Hosted UI デザイン改善案 Before/After | IELTS Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;600;700&display=swap"
+  rel="stylesheet"
+/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --navy: #0f172a; --orange: #f97316; --border: #e2e8f0; --muted: #64748b; }
+  body {
+    font-family: "Plus Jakarta Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fffdf9;
+    color: var(--navy);
+    margin: 0;
+  }
+  .browser-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px -8px rgb(15 23 42 / 0.18);
+    border: 1px solid var(--border);
+    background: white;
+  }
+  .browser-frame__bar { background: #e2e8f0; padding: 8px 12px; display: flex; gap: 6px; }
+  .browser-frame__dot { width: 10px; height: 10px; border-radius: 999px; background: #cbd5e1; }
+  .browser-frame iframe { width: 100%; height: 720px; border: 0; display: block; }
+  .note { border: 1px dashed #cbd5e1; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: var(--muted); background: #f8fafc; }
+</style>
+</head>
+<body>
+
+<header class="mx-auto max-w-6xl px-6 py-10">
+  <p class="text-sm font-bold" style="color: var(--orange)">#00065</p>
+  <h1 class="mt-2 text-3xl font-extrabold">Cognito Hosted UI デザイン改善案</h1>
+  <p class="mt-3 max-w-2xl text-sm" style="color: var(--muted)">
+    Cognito Hosted UI（Classic）本体（frontendの<code>/login</code>中間ページではなく、実際の認証フォーム画面）を対象にしたデザイン改善案。
+    左右の枠内はそれぞれ独立したHTMLページを<code>&lt;iframe&gt;</code>で表示しており、Afterは本チケットが提案する
+    <code>cognito-hosted-ui.proposal.css</code>をそのまま読み込んでいる（モックアップと提案CSSに差分がない）。
+  </p>
+  <div class="note mt-5 max-w-2xl">
+    見出し・ラベル等はAfter側で日本語表記に変更している。ただし実際のCognito Hosted UI本体（Classic）でこれを実現する技術的手段は
+    確立できていない（<code>ui_locales</code>パラメータは実機検証で無効、CSSでの文言差し替えも不可）。あくまで理想形のデザイン提案であり、
+    実現可否の検証は後続の実装チケットの課題とする（詳細はチケット本文参照）。
+  </div>
+</header>
+
+<main class="mx-auto max-w-6xl px-6 pb-16">
+  <div class="grid gap-8 md:grid-cols-2">
+    <div>
+      <h2 class="text-lg font-bold mb-3">Before（#00052時点の現状）</h2>
+      <div class="browser-frame">
+        <div class="browser-frame__bar">
+          <span class="browser-frame__dot"></span><span class="browser-frame__dot"></span><span class="browser-frame__dot"></span>
+        </div>
+        <iframe src="assets/fragment-before.html" title="Before"></iframe>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-lg font-bold mb-3">After（本チケットの改善案）</h2>
+      <div class="browser-frame">
+        <div class="browser-frame__bar">
+          <span class="browser-frame__dot"></span><span class="browser-frame__dot"></span><span class="browser-frame__dot"></span>
+        </div>
+        <iframe src="assets/fragment-after.html" title="After"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-10 note">
+    <p class="font-bold mb-2" style="color: var(--navy)">主な変更点</p>
+    <ul class="list-disc pl-5 space-y-1">
+      <li>ロゴ画像を追加（<code>.logo-customizable</code>、空白バナーの解消）</li>
+      <li>入力欄（<code>.inputField-customizable</code>）にボーダー・角丸・フォーカス時のリングを追加</li>
+      <li>「パスワードをお忘れですか？」「新規登録」リンク（<code>.redirect-customizable</code>）をブランドカラー（濃いオレンジ）に変更</li>
+      <li>エラー表示（<code>.errorMessage-customizable</code>）にアプリ本体の<code>--color-error</code>系トークンを適用</li>
+      <li>カード自体（<code>.background-customizable</code>）に<code>overflow: hidden</code>付きの角丸・影を追加し、紺色バナーと白いフォーム部分の角を統一（アプリ本体の<code>.card</code>コンポーネントに近づける）</li>
+      <li>見出し・ラベル・ボタン・リンク・エラー文言を日本語表記に変更（実現可否は要検証、モックアップ上の提案）</li>
+      <li>送信ボタンの文字色を白→ネイビーに変更、リンク色を濃いオレンジに変更し、コントラスト比をWCAG AA基準（4.5:1）まで改善</li>
+      <li>ラベル・見出し・入力欄等のフォントスタックをシステムフォントで統一（外部Webフォントは読み込み不可のため）</li>
+    </ul>
+  </div>
+
+  <div class="mt-4 note">
+    <p class="font-bold mb-2" style="color: var(--navy)">既知の制約（#00067の実装・dev環境実機確認で判明）</p>
+    <p>
+      <code>.redirect-customizable:hover</code>や<code>.redirect-customizable a</code>のような疑似クラス・子孫セレクタはCognitoのSetUICustomization APIから拒否される。実機では「Need an account? Sign up」の「Sign up」部分がCognito側マークアップ上ネストされた別要素になっており、親の色を継承できないため、Cognito標準の青のまま残る（本モックアップのAfter側では理想形として単一色で表示している）。
+    </p>
+  </div>
+</main>
+
+</body>
+</html>
