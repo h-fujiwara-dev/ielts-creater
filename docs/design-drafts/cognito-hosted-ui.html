@@ -84,6 +84,13 @@
       <li>ラベル・見出し・入力欄等のフォントスタックをシステムフォントで統一（外部Webフォントは読み込み不可のため）</li>
     </ul>
   </div>
+
+  <div class="mt-4 note">
+    <p class="font-bold mb-2" style="color: var(--navy)">既知の制約（#00067の実装・dev環境実機確認で判明）</p>
+    <p>
+      <code>.redirect-customizable:hover</code>や<code>.redirect-customizable a</code>のような疑似クラス・子孫セレクタはCognitoのSetUICustomization APIから拒否される。実機では「Need an account? Sign up」の「Sign up」部分がCognito側マークアップ上ネストされた別要素になっており、親の色を継承できないため、Cognito標準の青のまま残る（本モックアップのAfter側では理想形として単一色で表示している）。
+    </p>
+  </div>
 </main>
 
 </body>
